@@ -1,0 +1,63 @@
+﻿@model List<ResultPricingDto>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0 font-size-18">Starter</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                            <li class="breadcrumb-item active">Starter</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Ödeme Türleri Alanı</h4>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>İsim</th>
+                                        <th>Güncelle</th>
+                                        <th>Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.name</td>
+                                            <td><a href="/Admin/AdminPricing/UpdatePricing/@item.pricingId" class="btn btn-outline-info">Güncelle</a></td>
+                                            <td><a href="/Admin/AdminPricing/RemovePricing/@item.pricingId" class="btn btn-outline-danger">Sil</a></td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                            <a href="/Admin/AdminPricing/CreatePricing" class="btn btn-outline-dark">Yeni Ödeme Türü Girişi</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

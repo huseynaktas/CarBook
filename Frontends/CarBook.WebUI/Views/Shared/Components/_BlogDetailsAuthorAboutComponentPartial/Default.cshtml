@@ -1,0 +1,15 @@
+﻿@model List<CarBook_1.Dto.AuthorDtos.ResultGetAuthorByBlogAuthorIdDto>
+
+<div class="about-author d-flex p-4 bg-light">
+    @foreach (var item in Model)
+    {
+        <div class="bio mr-5">
+            <img src="@item.authorImageUrl" alt="Image placeholder" class="img-fluid mb-4">
+        </div>
+        <div class="desc">
+            <h3>@item.authorName</h3>
+            <p>@item.authorDescription</p>
+
+        </div>
+    }
+</div>

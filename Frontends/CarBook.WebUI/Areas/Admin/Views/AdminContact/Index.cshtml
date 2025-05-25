@@ -1,0 +1,77 @@
+﻿@model List<ResultContactDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<!-- Plugins css -->
+<link href="~/Admin/plugins/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="~/Admin/plugins/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
+
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0 font-size-18">Datatables</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
+                            <li class="breadcrumb-item active">Datatables</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">İletişim Tablosu</h4>
+                        <table id="basic-datatable" class="table dt-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th>İsim</th>
+                                    <th>Mail</th>
+                                    <th>Konu</th>
+                                    <th>Start date</th>
+                                    <th>Mesaj</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.name</td>
+                                        <td>@item.email</td>
+                                        <td>@item.subject</td>
+                                        <td>@item.sendDate.ToShortDateString()</td>
+                                        <td>@item.message</td>
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div> <!-- end card body-->
+                </div> <!-- end card -->
+            </div><!-- end col-->
+        </div>
+
+    </div> <!-- container-fluid -->
+</div>
+
+
