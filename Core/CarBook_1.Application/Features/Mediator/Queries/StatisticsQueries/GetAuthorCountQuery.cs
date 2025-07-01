@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarBook_1.Application.Features.Mediator.Queries.StatisticsQueries
 {
-    internal class GetAuthorCountQuery: IRequest<GetAuthorCountQueryResult>
+    public class GetAuthorCountQuery: IRequest<GetAuthorCountQueryResult>
     {
     }
 }

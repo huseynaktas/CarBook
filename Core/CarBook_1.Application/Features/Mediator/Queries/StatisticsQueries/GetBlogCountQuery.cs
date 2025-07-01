@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarBook_1.Application.Features.Mediator.Queries.StatisticsQueries
 {
-    internal class GetBlogCountQuery: IRequest<GetBlogCountQueryResult>
+    public class GetBlogCountQuery: IRequest<GetBlogCountQueryResult>
     {
     }
 }
