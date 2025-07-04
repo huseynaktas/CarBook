@@ -42,7 +42,7 @@ namespace CarBook_1.Persistence.Repositories.StatisticsRepositories
 
         public decimal GetAvgRentPriceForMonthly()
         {
-            int id = _context.Pricings.Where(y => y.Name == "Aylık").Select(z => z.PricingId).FirstOrDefault();
+            int id = _context.Pricings.Where(y => y.Name == "Saatlik").Select(z => z.PricingId).FirstOrDefault();
             var value = _context.CarPricings.Where(w => w.PricingId == id).Average(x => x.Amount);
             return value;
         }
