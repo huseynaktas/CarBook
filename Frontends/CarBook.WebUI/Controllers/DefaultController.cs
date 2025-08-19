@@ -14,6 +14,7 @@ namespace CarBook_1.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
@@ -30,6 +31,16 @@ namespace CarBook_1.WebUI.Controllers
             ViewBag.selectListItemLocation = values2;
             return View();
 
+        }
+        [HttpPost]
+        public IActionResult Index(string book_pick_date, string book_off_date, string time_pick, string time_off, string locationId)
+        {
+            TempData["book_pick_date"] = book_pick_date;
+            TempData["book_off_date"] = book_off_date;
+            TempData["time_pick"] = time_pick;
+            TempData["time_off"] = time_off;
+            TempData["locationId"] = locationId;
+            return RedirectToAction("Index", "RentACarList");
         }
     }
 }

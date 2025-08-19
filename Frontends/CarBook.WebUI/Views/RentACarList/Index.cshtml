@@ -1,16 +1,19 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/UILayout/Index.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Filtreleme Detayları</h1>
 
 <br />
 <br />
 <br />
 <br />
-Taşınan Veri: @ViewBag.v
+@ViewBag.book_pick_date
+@ViewBag.book_off_date
+@ViewBag.time_pick
+@ViewBag.time_off
+@ViewBag.locationId
 <br />
 <br />
 <br />
