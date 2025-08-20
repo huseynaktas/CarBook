@@ -1,19 +1,46 @@
-﻿@{
+﻿@model List<FilterRentACarDto>
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/UILayout/Index.cshtml";
 }
 
-<h1>Filtreleme Detayları</h1>
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="car-wrap rounded ftco-animate">
+                        <div class="img rounded d-flex align-items-end" style="background-image: url(@item.coverImageUrl);">
+                        </div>
+                        <div class="text">
+                            <h2 class="mb-0"><a href="car-single.html">@item.model</a></h2>
+                            <div class="d-flex mb-3">
+                                <span class="cat">@item.brandName</span>
+                                <p class="price ml-auto">₺000 <span>/gün</span></p>
+                            </div>
+                            <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Hemen kirala</a> <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Detaylar</a></p>
+                        </div>
+                    </div>
+                </div>
 
-<br />
-<br />
-<br />
-<br />
-@ViewBag.book_pick_date
-@ViewBag.book_off_date
-@ViewBag.time_pick
-@ViewBag.time_off
-@ViewBag.locationId
-<br />
-<br />
-<br />
+            }
+
+        </div>
+        <div class="row mt-5">
+            <div class="col text-center">
+                <div class="block-27">
+                    <ul>
+                        <li><a href="#">&lt;</a></li>
+                        <li class="active"><span>1</span></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&gt;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

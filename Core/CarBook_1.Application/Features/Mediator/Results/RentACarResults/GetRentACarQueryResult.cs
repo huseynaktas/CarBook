@@ -9,5 +9,9 @@ namespace CarBook_1.Application.Features.Mediator.Results.RentACarResults
     public class GetRentACarQueryResult
     {
         public int CarId { get; set; }
+        public string BrandName { get; set; }
+        public string Model { get; set; }
+        public decimal Amount { get; set; }
+        public string CoverImageUrl { get; set; }
     }
 }

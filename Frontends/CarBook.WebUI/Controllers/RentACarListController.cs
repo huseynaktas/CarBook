@@ -16,10 +16,6 @@ namespace CarBook_1.WebUI.Controllers
 
         public async Task<IActionResult> Index(int id)
         {
-            var book_pick_date = TempData["book_pick_date"];
-            var book_off_date = TempData["book_off_date"];
-            var time_pick = TempData["time_pick"];
-            var time_off = TempData["time_off"];
             var locationId = TempData["locationId"];
 
             //filterRentACarDto.locationId = int.Parse(locationId.ToString());
@@ -27,10 +23,6 @@ namespace CarBook_1.WebUI.Controllers
 
             id = int.Parse(locationId.ToString());
 
-            ViewBag.book_pick_date = book_pick_date;
-            ViewBag.book_off_date = book_off_date;
-            ViewBag.time_pick = time_pick;
-            ViewBag.time_off = time_off;
             ViewBag.locationId = locationId;
 
 
