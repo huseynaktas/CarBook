@@ -1,4 +1,4 @@
-﻿@model ResultLocationDto
+﻿@model CreateReservationDto
 
 @{
     ViewData["Title"] = "Index";
@@ -9,40 +9,34 @@
     <div class="container">
         <div class="row d-flex mb-5 contact-info">
             <div class="col-md-12 block-9 mb-md-5">
-                <form class="bg-light p-5 contact-form">
+                <form class="bg-light p-5 contact-form" method="post">
+                    <input type="hidden" asp-for="carId" value="@ViewBag.carId" class="form-control" placeholder="Almak İstediğiniz Araç">
                     <div class="form-group">
-                        <input type="text" class="form-control" readonly placeholder="Almak İstediğiniz Araç">
+                        <input type="text" asp-for="name" class="form-control" placeholder="Adınız">
                     </div>
                     <div class="form-group">
-                        <label>Adınız</label>
-                        <input type="text" class="form-control" placeholder="Adınız">
+                        <input type="text" asp-for="surname" class="form-control" placeholder="Soyadınız">
                     </div>
                     <div class="form-group">
-                        <label>Soyadınız</label>
-                        <input type="text" class="form-control" placeholder="Soyadınız">
+                        <input type="text" asp-for="emailAddress" class="form-control" placeholder="Mail Adresiniz">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Mail Adresiniz">
+                        <input type="text" asp-for="phone" class="form-control" placeholder="Telefon Numaranız">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Telefon Numaranız">
+                        @Html.DropDownListFor(x => x.dropOffLocationId, (List<SelectListItem>)ViewBag.selectedItemReservationLocation, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        <label>Alınmak İstenen Lokasyon</label>
-                        @Html.DropDownListFor(x => x.locationId, (List<SelectListItem>)ViewBag.selectedItemReservationLocation, new { @class = "form-control" })
+                        @Html.DropDownListFor(x => x.pickUpLocationId, (List<SelectListItem>)ViewBag.selectedItemReservationLocation, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        <label>İade Edilecek Lokasyon</label>
-                        @Html.DropDownListFor(x => x.locationId, (List<SelectListItem>)ViewBag.selectedItemReservationLocation, new { @class = "form-control" })
+                        <input type="text" asp-for="age" class="form-control" placeholder="Yaşınız">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Yaşınız">
+                        <input type="text" asp-for="driverLicenseYear" class="form-control" placeholder="Ehliyet Yılınız">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Ehliyet Yılınız">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Varsa Eklemek İstedikleriniz"></textarea>
+                        <textarea id="" asp-for="description" cols="30" rows="7" class="form-control" placeholder="Varsa Eklemek İstedikleriniz"></textarea>
                     </div>
                     <div class="d-flex justify-content-end">
                         <div class="form-group">
