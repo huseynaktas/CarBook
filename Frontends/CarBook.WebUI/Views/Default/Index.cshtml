@@ -5,9 +5,6 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-<html lang="en">
-@await Component.InvokeAsync("_HeadUILayoutComponentPartial")
 <style>
     .request-form .form-control {
         background: rgb(16, 137, 255) !important;
@@ -15,6 +12,9 @@
         font-size: 14px;
     }
 </style>
+<!DOCTYPE html>
+<html lang="en">
+@await Component.InvokeAsync("_HeadUILayoutComponentPartial")
 <body>
 
     @await Component.InvokeAsync("_NavbarUILayoutComponentPartial")
