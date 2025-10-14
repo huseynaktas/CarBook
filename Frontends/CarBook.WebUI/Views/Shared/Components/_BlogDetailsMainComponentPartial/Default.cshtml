@@ -15,9 +15,8 @@
         
         @await Component.InvokeAsync("_CommentListByBlogComponentPartial", new { id = Model.blogId })
         
-        <!-- END comment-list -->
 
-        @await Component.InvokeAsync("_CommentAddComponentPartial")
+        @await Html.PartialAsync("~/Views/Blog/AddComment.cshtml", new { id = ViewBag.blogId })
         
     </div>
 </div>

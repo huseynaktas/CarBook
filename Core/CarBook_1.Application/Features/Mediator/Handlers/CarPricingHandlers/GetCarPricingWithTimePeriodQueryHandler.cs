@@ -24,6 +24,7 @@ namespace CarBook_1.Application.Features.Mediator.Handlers.CarPricingHandlers
             var values = _repository.GerCarPricingWithTimePeriod1();
             return values.Select(x => new GetCarPricingWithTimePeriodQueryResult
             {
+                Brand = x.Brand,
                 Model = x.Model,
                 CoverImageUrl = x.CoverImageUrl,
                 DailyAmount = x.Amounts[0],

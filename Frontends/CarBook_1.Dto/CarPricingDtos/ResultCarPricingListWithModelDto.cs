@@ -14,6 +14,7 @@ namespace CarBook_1.Dto.CarPricingDtos
         public decimal weeklyAmount { get; set; }
         public decimal monthlyAmount { get; set; }
         public string coverImageUrl { get; set; }
+        public string brand { get; set; }
 
     }
 }
