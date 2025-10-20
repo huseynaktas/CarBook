@@ -23,17 +23,14 @@ namespace CarBook.Domain.Entities
         public string Fuel { get; set; }
         public string BigImageUrl { get; set; }
 
-        //CarFeature tablosu ile bağlantı
+        
         public List<CarFeature> CarFeatures { get; set; }
-
-        //CarDescription tablosu ile bağlantı
         public List<CarDescription> CarDescriptions { get; set; }
-
-        //CarPricing tablosu ile bağlantı
         public List<CarPricing> CarPricings { get; set; }
         public List<RentACar> RentACars { get; set; }
         public List<RentACarProcess> RentACarProcesses { get; set; }
         public List<Reservation> Reservations { get; set; }
+        public List<Review> Reviews { get; set; }
 
     }
 }

@@ -12,6 +12,7 @@ using CarBook_1.Application.Interfaces.CarFeatureInterfaces;
 using CarBook_1.Application.Interfaces.CarInterfaces;
 using CarBook_1.Application.Interfaces.CarPricingInterfaces;
 using CarBook_1.Application.Interfaces.RentACarInterfaces;
+using CarBook_1.Application.Interfaces.ReviewInterfaces;
 using CarBook_1.Application.Interfaces.StatisticsInterfaces;
 using CarBook_1.Application.Interfaces.TagCloudInterfaces;
 using CarBook_1.Application.Services;
@@ -24,6 +25,7 @@ using CarBook_1.Persistence.Repositories.CarPricingRepositories;
 using CarBook_1.Persistence.Repositories.CarRepository;
 using CarBook_1.Persistence.Repositories.CommentRepositories;
 using CarBook_1.Persistence.Repositories.RentACarRepositories;
+using CarBook_1.Persistence.Repositories.ReviewRepositories;
 using CarBook_1.Persistence.Repositories.StatisticsRepositories;
 using CarBook_1.Persistence.Repositories.TagCloudRepositories;
 
@@ -40,6 +42,7 @@ builder.Services.AddScoped(typeof(IStatisticsRepository),typeof(StatisticsReposi
 builder.Services.AddScoped(typeof(IRentACarRepository),typeof(RentACarRepository));
 builder.Services.AddScoped(typeof(ICarFeatureRepository),typeof(CarFeatureRepository));
 builder.Services.AddScoped(typeof(ICarDescriptionRepository),typeof(CarDescriptionRepository));
+builder.Services.AddScoped(typeof(IReviewRepository),typeof(ReviewRepository));
 builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(CommentRepository<>));
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
