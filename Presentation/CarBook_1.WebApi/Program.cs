@@ -16,6 +16,7 @@ using CarBook_1.Application.Interfaces.ReviewInterfaces;
 using CarBook_1.Application.Interfaces.StatisticsInterfaces;
 using CarBook_1.Application.Interfaces.TagCloudInterfaces;
 using CarBook_1.Application.Services;
+using CarBook_1.Application.Tools;
 using CarBook_1.Persistence.Context;
 using CarBook_1.Persistence.Repositories;
 using CarBook_1.Persistence.Repositories.BlogRepositories;
@@ -29,9 +30,26 @@ using CarBook_1.Persistence.Repositories.ReviewRepositories;
 using CarBook_1.Persistence.Repositories.StatisticsRepositories;
 using CarBook_1.Persistence.Repositories.TagCloudRepositories;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.RequireHttpsMetadata = false;
+    opt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidAudience = JwtTokenDefaults.ValidAudience,
+        ValidIssuer = JwtTokenDefaults.ValidIssuer,
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true
+    };
+});
 
 // Add services to the container.
 builder.Services.AddScoped<CarBookContext>();
@@ -107,6 +125,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
