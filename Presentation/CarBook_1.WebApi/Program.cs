@@ -29,6 +29,7 @@ using CarBook_1.Persistence.Repositories.RentACarRepositories;
 using CarBook_1.Persistence.Repositories.ReviewRepositories;
 using CarBook_1.Persistence.Repositories.StatisticsRepositories;
 using CarBook_1.Persistence.Repositories.TagCloudRepositories;
+using CarBook_1.WebApi.Hubs;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -36,6 +37,20 @@ using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpClient();
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials();
+    });
+});
+
+builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
 {
@@ -51,20 +66,23 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+#region //Mediator Registirations
 // Add services to the container.
 builder.Services.AddScoped<CarBookContext>();
-builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
-builder.Services.AddScoped(typeof(ICarRepository),typeof(CarRepository));
-builder.Services.AddScoped(typeof(IBlogRepository),typeof(BlogRepository));
-builder.Services.AddScoped(typeof(ICarPricingRepository),typeof(CarPricingRepository));
-builder.Services.AddScoped(typeof(ITagCloudRepository),typeof(TagCloudRepository));
-builder.Services.AddScoped(typeof(IStatisticsRepository),typeof(StatisticsRepository));
-builder.Services.AddScoped(typeof(IRentACarRepository),typeof(RentACarRepository));
-builder.Services.AddScoped(typeof(ICarFeatureRepository),typeof(CarFeatureRepository));
-builder.Services.AddScoped(typeof(ICarDescriptionRepository),typeof(CarDescriptionRepository));
-builder.Services.AddScoped(typeof(IReviewRepository),typeof(ReviewRepository));
-builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(CommentRepository<>));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
+builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
+builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
+builder.Services.AddScoped(typeof(ITagCloudRepository), typeof(TagCloudRepository));
+builder.Services.AddScoped(typeof(IStatisticsRepository), typeof(StatisticsRepository));
+builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepository));
+builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatureRepository));
+builder.Services.AddScoped(typeof(ICarDescriptionRepository), typeof(CarDescriptionRepository));
+builder.Services.AddScoped(typeof(IReviewRepository), typeof(ReviewRepository));
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
+#endregion
 
+#region //CQRS Registirations
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
 builder.Services.AddScoped<CreateAboutCommandHandler>();
@@ -102,6 +120,7 @@ builder.Services.AddScoped<GetContactByIdQueryHandler>();
 builder.Services.AddScoped<CreateContactCommandHandler>();
 builder.Services.AddScoped<UpdateContactCommandHandler>();
 builder.Services.AddScoped<RemoveContactCommandHandler>();
+#endregion
 
 builder.Services.AddApplicationService(builder.Configuration);
 
@@ -124,6 +143,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
@@ -131,5 +152,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<CarHub>("/carhub");
 
 app.Run();
